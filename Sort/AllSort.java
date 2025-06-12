@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Sort {
+public class AllSort {
     public int[] Select_sort(int[] arr,int n){
       for(int i=0;i<=n-2;i++){
          int mini =i;
@@ -51,7 +51,7 @@ public class Sort {
         for(int i=0;i<arr.length;i++){
             arr[i]= sc.nextInt();
         }
-        Sort ss = new Sort();
+        AllSort ss = new AllSort();
        for(int e : ss.Insertion_sort(arr,n)){
         System.out.print(e+" ");
        }
