@@ -47,7 +47,7 @@ public class AllSort {
         System.out.println("Enter the number of elements to sort:");
         int n = sc.nextInt();
         System.out.println("Enter numbers to sort:");
-        int [] arr = new int[n];
+        int [] arr =  new int[n];
         for(int i=0;i<arr.length;i++){
             arr[i]= sc.nextInt();
         }
