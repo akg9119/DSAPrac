@@ -1,6 +1,9 @@
 package Recursion;
 
-public class AllRecursionBasic {
+import java.util.ArrayList;
+import java.util.List;
+
+public class AllRecursion {
 
     public static void printNumber1To_N(int n) {
         if (n == 0) {
@@ -47,7 +50,7 @@ public class AllRecursionBasic {
     }
 
     public static int binearySearch(int[] arr, int tar, int st, int end) {
-        if (st <=end) {
+        if (st <= end) {
             int mid = st + (end - st) / 2;
             if (arr[mid] == tar)
                 return mid;
@@ -60,8 +63,25 @@ public class AllRecursionBasic {
         return -1;
     }
 
+    public static void printSubset(int[] arr, List<Integer> ans, int i) {
+         if (i == arr.length) {
+            System.out.println(ans);
+            return;
+        }
+        // Include the element
+        ans.add(arr[i]);
+        printSubset(arr, ans, i + 1);
+
+        // Backtrack: Remove the last added element
+        ans.remove(ans.size() - 1);
+
+        // Exclude the element
+        printSubset(arr, ans, i + 1);
+    }
+
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3, 4, 5 };
-        System.out.print(binearySearch(arr, 1,0,arr.length-2));
+        List<Integer> ans = new ArrayList<>();
+        printSubset(arr, ans, 0);
     }
 }
