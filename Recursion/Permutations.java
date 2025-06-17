@@ -8,73 +8,95 @@ public class Permutations {
     public static void main(String[] args) {
         int[] arr = {1, 2, 2};
 
-        System.out.println(" All Unique Subsets (Duplicates Handled):");
+        // ----------- Subsets with Duplicates Handled ----------
+        System.out.println("All Unique Subsets (Duplicates Handled):");
+        // Note: The input array should be sorted for duplicate subset logic to work properly
+        // Arrays.sort(arr); // Recommended if array is not sorted
         printDuplicateSubset(arr, new ArrayList<>(), 0);
 
-        System.out.println("\n All Permutations:");
+        // ----------- Permutations (All Possible Arrangements) ----------
+        System.out.println("\nAll Permutations:");
         List<List<Integer>> permResults = new ArrayList<>();
         permutations(arr, permResults, 0);
 
+        // Print all permutations
         for (List<Integer> perm : permResults) {
             System.out.println(perm);
         }
     }
 
     /**
-     * Function to print all subsets while avoiding duplicates
-     * This avoids reprocessing same elements to skip duplicate subsets.
-     * Assumes input array is sorted for this logic to work correctly.
+     *  Problem: Generate all unique subsets of a given array (Power Set),
+     *    while avoiding duplicate subsets due to repeated elements.
+     *  Input: arr = [1, 2, 2]
+     *  Output:
+     * [], [1], [1, 2], [1, 2, 2], [2], [2, 2]
+     *  Technique:
+     *    - Use recursion with backtracking.
+     *    - At each step, choose to include or exclude the current element.
+     *    - If skipping, skip all duplicates of the current element.
      */
     public static void printDuplicateSubset(int[] arr, List<Integer> ans, int i) {
+        // Base case: when index reaches end of array, print current subset
         if (i == arr.length) {
-            System.out.println(ans); // Print current subset
+            System.out.println(ans);
             return;
         }
 
-        //  Include current element
+        // Include the current element in subset
         ans.add(arr[i]);
         printDuplicateSubset(arr, ans, i + 1);
 
-        //  Backtrack: remove last added element
+        // Backtrack: remove the last included element
         ans.remove(ans.size() - 1);
 
-        //  Skip duplicate elements
+        // Skip all duplicates of current element to avoid repeated subsets
         int idx = i + 1;
         while (idx < arr.length && arr[idx] == arr[i]) {
             idx++;
         }
 
-        //  Exclude current element and move to next distinct element
+        // Exclude current element and move to the next distinct one
         printDuplicateSubset(arr, ans, idx);
     }
 
     /**
-     * Generate all permutations of the array using backtracking
-     * Each element is swapped to the front in turn and recursed on.
+     *  Problem: Generate all permutations (rearrangements) of an array.
+     *  Input: arr = [1, 2, 2]
+     *  Output: [1, 2, 2], [1, 2, 2], [2, 1, 2], [2, 2, 1], ...
+     *    (Duplicates may appear if array has repeating elements.)
+     *
+     *  Technique:
+     *    - Use backtracking and swap elements to fix one at a time.
+     *    - At each index, try all elements in remaining part of the array.
+     *    - Backtrack (restore array) after recursive call.
      */
     public static void permutations(int[] arr, List<List<Integer>> ans, int idx) {
-        //  Base case: complete permutation formed
+        // Base case: a complete permutation has been formed
         if (idx == arr.length) {
             List<Integer> allPerm = new ArrayList<>();
             for (int m : arr) {
                 allPerm.add(m);
             }
-            ans.add(allPerm); // store current permutation
+            ans.add(allPerm); // Store current valid permutation
             return;
         }
 
+        // Loop through all elements from idx to end
         for (int i = idx; i < arr.length; i++) {
-            //  Swap to fix current element at index `idx`
+            // Swap current element with index to fix it
             swap(arr, i, idx);
-            //  Recurse for next index
+
+            // Recurse to fix next index
             permutations(arr, ans, idx + 1);
-            //  Backtrack: restore original array
+
+            // Backtrack: undo the swap to try another possibility
             swap(arr, i, idx);
         }
     }
 
     /**
-     *  Swap two elements in an array
+     * Utility method to swap two elements in the array
      */
     private static void swap(int[] arr, int i, int j) {
         int temp = arr[i];

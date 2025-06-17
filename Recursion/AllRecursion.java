@@ -70,36 +70,6 @@ public class AllRecursion {
         return -1;
     }
 
-    // Print all subsets (power set)
-    public static void printSubset(int[] arr, List<Integer> ans, int i) {
-        if (i == arr.length) {
-            System.out.println(ans);
-            return;
-        }
-        ans.add(arr[i]);
-        printSubset(arr, ans, i + 1);
-
-        ans.remove(ans.size() - 1);
-        printSubset(arr, ans, i + 1);
-    }
-
-    // Print all unique subsets avoiding duplicates
-    public static void printDuplicateSubset(int[] arr, List<Integer> ans, int i) {
-        if (i == arr.length) {
-            System.out.println(ans);
-            return;
-        }
-        ans.add(arr[i]);
-        printDuplicateSubset(arr, ans, i + 1);
-        ans.remove(ans.size() - 1);
-
-        int idx = i + 1;
-        while (idx < arr.length && arr[idx] == arr[i]) {
-            idx++;
-        }
-        printDuplicateSubset(arr, ans, idx);
-    }
-
     // Generate permutations of a string array
     public static void permutationsForString(String[] arr, List<List<String>> ans, int idx) {
         if (idx == arr.length) {
@@ -125,12 +95,44 @@ public class AllRecursion {
         arr[j] = temp;
     }
 
-    public static void main(String[] args) {
-        String[] str = { "a", "b" };
-        List<List<String>> ans = new ArrayList<>();
-        permutationsForString(str, ans, 0);
-        for (List<String> list : ans) {
-            System.out.println(list);
+    //  Function to check if a given string is a palindrome
+    public static boolean stringPalindrome(String str) {
+        int l = 0;               // Left pointer
+        int r = str.length() - 1; // Right pointer
+
+        // Check characters from both ends moving toward the center
+        while (l < r) {
+            if (str.charAt(l) != str.charAt(r)) {
+                return false;   // Not a palindrome if mismatch found
+            }
+            l++;  // Move left pointer forward
+            r--;  // Move right pointer backward
         }
+
+        return true;  // All characters matched — it's a palindrome
+    }
+
+
+    
+    //  Recursive function to reverse an array in-place
+    public static void reverseArray(int[] arr, int start, int end) {
+        // Base case: if start >= end, stop recursion
+        if (start >= end) {
+            return;
+        }
+
+        //  Swap correctly using temp variable
+        int temp = arr[start];   // Save value at start
+        arr[start] = arr[end];   // Copy value from end to start
+        arr[end] = temp;         // Assign saved value to end
+
+        // Recursive call for next pair
+        reverseArray(arr, start + 1, end - 1);
+    }
+    public static void main(String[] args) {
+       String stringName = "A man, a plan, a canal: Panama";
+        String str = stringName.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        System.out.print(stringPalindrome(str));
+       
     }
 }
