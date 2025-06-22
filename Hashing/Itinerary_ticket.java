@@ -49,3 +49,8 @@ public class Itinerary_ticket {
         System.out.print(start);
     }
 }
+
+// Step 1: Store all destination cities using map.values()
+// Step 2: Find the starting city → the one NOT present in destination cities
+// Step 3: Start from that city and keep printing using map.get(current)
+//         until no more destination is found

@@ -61,3 +61,9 @@ public class MergeSort {
         }
     }
 }
+
+
+// Step 1: Divide the array into two halves recursively
+// Step 2: Sort each half using mergeSort()
+// Step 3: Merge both sorted halves using merge()
+//         → Compare elements from both sides and merge in order

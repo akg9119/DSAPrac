@@ -36,3 +36,8 @@ public class MajorityElement {
         f(arr);  // Expected output: 6 1 (both appear once, and n = 2, so n/3 = 0)
     }
 }
+
+
+// Step 1: Count frequency of each element using a HashMap
+// Step 2: Check which elements appear more than n/3 times
+//         → Print those elements

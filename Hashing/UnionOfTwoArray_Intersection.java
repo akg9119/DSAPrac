@@ -56,3 +56,15 @@ public class UnionOfTwoArray_Intersection {
         System.out.println("The union count is: " + union(arr1, arr2));
     }
 }
+
+
+// 🔹 Union Logic:
+// Step 1: Add all elements of both arrays into a HashSet
+// Step 2: Set automatically removes duplicates
+// Step 3: Return set.size() → gives count of unique elements
+
+// 🔹 Intersection Logic:
+// Step 1: Add all elements of arr1 to a HashSet
+// Step 2: For each element in arr2:
+//         → If it's in the set, count it and remove from set
+// Step 3: Return count → total unique common elements

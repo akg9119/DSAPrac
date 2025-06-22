@@ -40,6 +40,10 @@ public class AllRecursion {
     }
 
     // Find nth Fibonacci number
+
+    // Step 1: First two numbers are fixed → 0 and 1
+    // Step 2: Next number = sum of previous two
+    // Step 3: Repeat till n terms
     public static int fibonacci(int n) {
         if (n == 0 || n == 1) {
             return n;
@@ -56,6 +60,13 @@ public class AllRecursion {
     }
 
     // Binary search using recursion
+
+    // Step 1: Find mid = (start + end) / 2
+    // Step 2:
+    // → If arr[mid] == target → return mid
+    // → If target > arr[mid] → search right (mid+1 to end)
+    // → If target < arr[mid] → search left (start to mid-1)
+    // Step 3: Base case → return -1 if start > end
     public static int binearySearch(int[] arr, int tar, int st, int end) {
         if (st <= end) {
             int mid = st + (end - st) / 2;
@@ -71,6 +82,11 @@ public class AllRecursion {
     }
 
     // Generate permutations of a string array
+
+    // Step 1: Use recursion to fix one character at a time
+    // Step 2: Swap the current index with all positions after it
+    // Step 3: Recurse for the remaining substring
+    // Step 4: Backtrack (undo the swap) to restore original string
     public static void permutationsForString(String[] arr, List<List<String>> ans, int idx) {
         if (idx == arr.length) {
             List<String> list = new ArrayList<>();
@@ -95,44 +111,43 @@ public class AllRecursion {
         arr[j] = temp;
     }
 
-    //  Function to check if a given string is a palindrome
+    // Function to check if a given string is a palindrome
     public static boolean stringPalindrome(String str) {
-        int l = 0;               // Left pointer
+        int l = 0; // Left pointer
         int r = str.length() - 1; // Right pointer
 
         // Check characters from both ends moving toward the center
         while (l < r) {
             if (str.charAt(l) != str.charAt(r)) {
-                return false;   // Not a palindrome if mismatch found
+                return false; // Not a palindrome if mismatch found
             }
-            l++;  // Move left pointer forward
-            r--;  // Move right pointer backward
+            l++; // Move left pointer forward
+            r--; // Move right pointer backward
         }
 
-        return true;  // All characters matched — it's a palindrome
+        return true; // All characters matched — it's a palindrome
     }
 
-
-    
-    //  Recursive function to reverse an array in-place
+    // Recursive function to reverse an array in-place
     public static void reverseArray(int[] arr, int start, int end) {
         // Base case: if start >= end, stop recursion
         if (start >= end) {
             return;
         }
 
-        //  Swap correctly using temp variable
-        int temp = arr[start];   // Save value at start
-        arr[start] = arr[end];   // Copy value from end to start
-        arr[end] = temp;         // Assign saved value to end
+        // Swap correctly using temp variable
+        int temp = arr[start]; // Save value at start
+        arr[start] = arr[end]; // Copy value from end to start
+        arr[end] = temp; // Assign saved value to end
 
         // Recursive call for next pair
         reverseArray(arr, start + 1, end - 1);
     }
+
     public static void main(String[] args) {
-       String stringName = "A man, a plan, a canal: Panama";
+        String stringName = "A man, a plan, a canal: Panama";
         String str = stringName.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
         System.out.print(stringPalindrome(str));
-       
+
     }
 }
