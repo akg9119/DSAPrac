@@ -108,3 +108,53 @@ function Remove_duplicates(arr) {
 // Example usage:
 // let arr = [1, 2, 3, 2, 4, 1];
 // Remove_duplicates(arr);
+
+
+// Find the intersection of two arrays.
+function intersection(arr1, arr2) {
+    let arr3 = new Set(arr1);
+    let result = new Set();
+    for (let m of arr2) {
+        if (arr3.has(m)) {
+            result.add(m);
+        }
+    }
+    //  return result;
+    console.log([...result]);
+}
+//  let arr1 = [1, 2, 3, 2, 4, 1];
+//   let arr2 = [1, 2,66,7,78,99];
+
+// intersection(arr1,arr2);
+
+// Rotate an array by k steps.
+
+function rotate_k(arr, l) {
+    let n = arr.length;
+    let k = l % 10;
+    let result1 = arr.slice(-k);
+    let result2 = arr.slice(0, n - k);
+    let result = result1.concat(result2);
+    console.log(result);
+
+}
+// let k =2;
+// let arr=[1,2,3,4,5,6];
+// rotate_k(arr,k);
+
+// Group anagrams from a list of strings.
+
+function anagrams(arr) {
+    let map = new Map();
+    for (let m of arr) {
+       let sorted = m.split('').sort().join();
+       if(!map.has(sorted)){
+        map.set(sorted,[]);
+       }
+       map.get(sorted).push(m);
+    }
+    let v =Array.from(map.values());
+    console.log(v );
+}
+let arr = ["eat", "tea", "tan", "ate", "nat", "bat"];
+anagrams(arr);
