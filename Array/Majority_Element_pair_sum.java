@@ -29,14 +29,14 @@ public class Majority_Element_pair_sum {
             if(freq ==0){
                 ans =arr[i];
             }
-            if(ans==arr[i]){
+            else if(ans==arr[i]){
                 freq++;
             }
             else{
                 freq--;
             }
         }
-        return ans;
+        return ans;                           
     }
     public static void main(String[] args){
         // int[] arr = {1, 2, 3, 4, 5, 6};
