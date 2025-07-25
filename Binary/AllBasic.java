@@ -11,7 +11,6 @@ public class AllBasic {
             }
             else if(arr[mid]<target){
                 str=mid+1;
-
             }else{
                 end=mid-1;
             }
