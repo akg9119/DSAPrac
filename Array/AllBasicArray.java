@@ -118,10 +118,26 @@ public class AllBasicArray {
         }
         System.out.println("Biggest sum of subarray is: " + big);
     }
-
+    public static void findSumTwoValue(int[] arr,int target){
+      int s =0,l=arr.length-1;
+      while(s<=l){
+        int sum = arr[s]+arr[l];
+        if(sum == target){
+            System.out.print(s+" "+l);
+            return;
+        }
+        else if(sum< target){
+          s++;
+        }else{
+           l--;
+        }
+      }
+      System.out.print("Value is not found");
+    }
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3, 4, 5, 6 };
-        subArray(arr);
+        int[] arr = { 1, 2, 3, 4, 4, 9 };
+        // subArray(arr);
+        findSumTwoValue(arr,9);
 
     }
 }
