@@ -1,5 +1,7 @@
 package Array;
 
+import java.util.HashMap;
+
 public class AllBasicArray {
 
     public static void largestElement(int[] arr) {
@@ -119,25 +121,21 @@ public class AllBasicArray {
         System.out.println("Biggest sum of subarray is: " + big);
     }
     public static void findSumTwoValue(int[] arr,int target){
-      int s =0,l=arr.length-1;
-      while(s<=l){
-        int sum = arr[s]+arr[l];
-        if(sum == target){
-            System.out.print(s+" "+l);
-            return;
+       HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0 ; i<arr.length;i++){
+            int f = arr[i];
+            int s = target - f;
+            if(map.containsKey(s)){
+                System.out.print(map.get(s)+" "+ i);
+            }
+             map.put(f, i); 
         }
-        else if(sum< target){
-          s++;
-        }else{
-           l--;
-        }
-      }
-      System.out.print("Value is not found");
+        
     }
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3, 4, 4, 9 };
+        int[] arr = { 3,2,4 };
         // subArray(arr);
-        findSumTwoValue(arr,9);
+        findSumTwoValue(arr,6);
 
     }
 }
