@@ -1,51 +1,55 @@
 package LinkedList;
 
 public class CheckPalinLL {
-     class ListNode {
-    int val;
-    ListNode next;
+    class ListNode {
+        int val;
+        ListNode next;
 
-    ListNode() {}
+        ListNode() {
+        }
 
-    ListNode(int val) {
-        this.val = val;
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
 
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
- public ListNode reverse(ListNode head){
+    public ListNode reverse(ListNode head) {
         ListNode pre = null;
         ListNode curr = head;
 
-        while(curr != null){
-         ListNode next = curr.next;
-         curr.next =pre;
-         pre= curr;
-         curr = next;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
         }
         return pre;
     }
-    public ListNode findMid(ListNode head){
+
+    public ListNode findMid(ListNode head) {
         ListNode hare = head;
         ListNode turtle = head;
-        while(hare.next != null && hare.next.next != null){
-            hare =hare.next.next;
+        while (hare.next != null && hare.next.next != null) {
+            hare = hare.next.next;
             turtle = turtle.next;
         }
         return turtle;
     }
+
     public boolean isPalindrome(ListNode head) {
-        if(head == null || head.next == null){
+        if (head == null || head.next == null) {
             return true;
         }
         ListNode mid = findMid(head);
         ListNode secStart = reverse(mid.next);
         ListNode firstStart = head;
-        while(secStart != null){
-            if(firstStart.val != secStart.val){
+        while (secStart != null) {
+            if (firstStart.val != secStart.val) {
                 return false;
             }
             firstStart = firstStart.next;
