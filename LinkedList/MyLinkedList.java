@@ -1,6 +1,6 @@
 package LinkedList;
 
-public class Basic {
+public class MyLinkedList {
     public Node head;
     private int size;
 
@@ -15,7 +15,7 @@ public class Basic {
         }
     }
 
-    public Basic() {
+    public MyLinkedList() {
         this.size = 0;
     }
 
@@ -130,7 +130,7 @@ public class Basic {
     }
 
     public static void main(String[] args) {
-        Basic basic = new Basic();
+        MyLinkedList basic = new MyLinkedList();
         basic.addFirst("a");
         basic.addFirst("is");
         basic.listPrint();
